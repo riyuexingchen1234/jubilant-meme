@@ -1,66 +1,19 @@
-# ===== OS =====
-.DS_Store
-._*
-Thumbs.db
-Desktop.ini
-
-# ===== IDE/Editor =====
-.vscode/
-.idea/
-.project
-.classpath
-.settings/
-*.sublime-*
-
-# ===== Node.js/Frontend =====
-node_modules/
-.pnpm-store/
-.next/
-.nuxt/
-.vite/
-.cache/
-.eslintcache
-*.tsbuildinfo
-
-# ===== Python =====
 __pycache__/
-*.pyc
-*.pyo
-.venv/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
 venv/
-.pytest_cache/
-.mypy_cache/
-.ipynb_checkpoints/
+.venv/
 *.egg-info/
-
-# ===== Rust =====
-target/
-
-# ===== Java/JVM =====
-.gradle/
-*.class
-*.jar
-*.war
-*.ear
-
-# ===== Ruby =====
-.bundle/
-
-# ===== Logs/Temp =====
+dist/
+build/
+.env
+.novel_assistant/
+imports/
+novels/
+authors/
+test_run/
 *.log
-logs/
-*.tmp
-*.temp
-*.swp
-*.swo
-*~
-
-# ===== Test Coverage =====
-coverage/
-.nyc_output/
-htmlcov/
-.coverage
-*.lcov
-
-# ===== Internal =====
-/.work/
+.pytest_cache/
