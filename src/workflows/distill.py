@@ -3,7 +3,7 @@ import shutil
 from pathlib import Path
 from typing import Any, Dict
 from src.llm.base import BaseLLMClient
-from src.utils.text_clean import load_and_clean_txt
+from src.utils.text_clean import load_and_clean
 from src.agents.distillation.preprocessor import PreprocessorAgent
 from src.agents.distillation.statistician import StatisticianAgent
 from src.agents.distillation.literature_analyst import LiteratureAnalystAgent
@@ -94,7 +94,7 @@ class DistillationWorkflow:
         if output_dir is None:
             output_dir = self.workspace / "authors" / author_slug
         print(f"[1/6] 加载并清洗文本：{input_file.name}")
-        data = load_and_clean_txt(input_file)
+        data = load_and_clean(input_file)
         cleaned = data["cleaned_text"]
         print(f"  总字符数：{data['total_chars']}，章节数：{data['total_chapters']}")
         sample = self._get_sample(cleaned)
