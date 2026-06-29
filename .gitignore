@@ -16,18 +16,17 @@ novels/
 *.log
 .pytest_cache/
 
-# 小说原文和章节文件（有版权），不提交
-test_run/source/
-test_run/parse_epub.py
-test_run/statistics.py
-test_run/check_ai_words.py
+# 原始epub文件（版权内容）
+test_run/source/**/*.epub
+
+# 全书原文和拆分的完整章节（版权内容）
+test_run/source/**/raw_text/
+test_run/source/**/chapters/
+
+# 临时备份目录
 test_run/author_style_backup/
 
-# authors目录下只保留规则文件，原始分析数据不提交
+# authors目录下只保留规则文件，原始分析中间数据不提交
 authors/*/raw_text/
 authors/*/chapters/
 authors/*/sample_chapters/
-authors/*/statistics.json
-authors/*/literary_analysis.md
-authors/*/antipatterns.md
-authors/*/word_stats.txt

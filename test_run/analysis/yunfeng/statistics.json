@@ -1,0 +1,469 @@
+{
+  "basic_info": {
+    "title": "北派盗墓笔记",
+    "total_volumes": 4,
+    "total_characters_raw": 2674894,
+    "total_characters_clean": 2653193,
+    "total_sentences": 110949,
+    "total_paragraphs": 84233,
+    "total_chapters": 1043
+  },
+  "sentence_length": {
+    "total_sentences": 110949,
+    "avg_length": 22.42,
+    "short_sentence_ratio": 30.03,
+    "mid_sentence_ratio": 36.41,
+    "long_sentence_ratio": 33.56,
+    "short_count": 33319,
+    "mid_count": 40399,
+    "long_count": 37231
+  },
+  "dialogue_ratio": 0.3044,
+  "paragraph_statistics": {
+    "total_paragraphs": 84233,
+    "avg_length": 30.45,
+    "short_paragraph_ratio": 83.76,
+    "mid_paragraph_ratio": 16.24,
+    "long_paragraph_ratio": 0.0,
+    "short_count": 70550,
+    "mid_count": 13679,
+    "long_count": 4,
+    "preference": "明显偏好短段落，节奏明快，适合手机阅读，具有典型网文特征",
+    "note": "按\\n\\n分段仅得到1046个块（章内无空行），实际采用合并硬换行后按行分段"
+  },
+  "punctuation": {
+    "detailed_counts": {
+      "省略号(中文)": 1181,
+      "感叹号(中文)": 26399,
+      "感叹号(英文)": 10,
+      "问号(中文)": 15135,
+      "逗号(中文)": 167408,
+      "逗号(英文)": 10,
+      "句号(中文)": 64266,
+      "句号(英文)": 6598,
+      "顿号": 337,
+      "冒号(中文)": 8871,
+      "冒号(英文)": 5977,
+      "分号(中文)": 12,
+      "分号(英文)": 1,
+      "左双引号": 39552,
+      "右双引号": 39403,
+      "左括号(中文)": 304,
+      "右括号(中文)": 223,
+      "左括号(英文)": 2,
+      "右括号(英文)": 83,
+      "左书名号": 32,
+      "右书名号": 32
+    },
+    "category_counts": {
+      "省略号": 1181,
+      "感叹号": 26409,
+      "问号": 15135,
+      "破折号": 0,
+      "逗号": 167418,
+      "句号": 70864,
+      "顿号": 337,
+      "冒号": 14848,
+      "分号": 13,
+      "引号": 78955,
+      "括号": 612,
+      "书名号": 64
+    },
+    "top5_excluding_comma_period": [
+      {
+        "name": "引号",
+        "count": 78955
+      },
+      {
+        "name": "感叹号",
+        "count": 26409
+      },
+      {
+        "name": "问号",
+        "count": 15135
+      },
+      {
+        "name": "冒号",
+        "count": 14848
+      },
+      {
+        "name": "省略号",
+        "count": 1181
+      }
+    ],
+    "summary": "作者善用感叹号和问号营造紧张悬疑氛围，对话较多导致引号使用频繁，破折号和省略号常用于制造停顿和悬念，整体标点风格口语化、节奏感强，符合盗墓小说惊险刺激的叙事特点。"
+  },
+  "top_50_words": [
+    {
+      "word": "把头",
+      "count": 6190
+    },
+    {
+      "word": "豆芽",
+      "count": 3877
+    },
+    {
+      "word": "鱼哥",
+      "count": 3032
+    },
+    {
+      "word": "看到",
+      "count": 2685
+    },
+    {
+      "word": "突然",
+      "count": 2321
+    },
+    {
+      "word": "看着",
+      "count": 2130
+    },
+    {
+      "word": "小萱",
+      "count": 1799
+    },
+    {
+      "word": "直接",
+      "count": 1385
+    },
+    {
+      "word": "云峰",
+      "count": 1250
+    },
+    {
+      "word": "发现",
+      "count": 1080
+    },
+    {
+      "word": "声音",
+      "count": 1062
+    },
+    {
+      "word": "兄弟",
+      "count": 1049
+    },
+    {
+      "word": "晚上",
+      "count": 1041
+    },
+    {
+      "word": "地上",
+      "count": 1039
+    },
+    {
+      "word": "感觉",
+      "count": 1014
+    },
+    {
+      "word": "之前",
+      "count": 998
+    },
+    {
+      "word": "听到",
+      "count": 997
+    },
+    {
+      "word": "肯定",
+      "count": 971
+    },
+    {
+      "word": "开始",
+      "count": 970
+    },
+    {
+      "word": "一直",
+      "count": 969
+    },
+    {
+      "word": "看看",
+      "count": 964
+    },
+    {
+      "word": "师傅",
+      "count": 963
+    },
+    {
+      "word": "脸色",
+      "count": 949
+    },
+    {
+      "word": "点头",
+      "count": 933
+    },
+    {
+      "word": "要是",
+      "count": 908
+    },
+    {
+      "word": "当时",
+      "count": 903
+    },
+    {
+      "word": "最后",
+      "count": 893
+    },
+    {
+      "word": "不过",
+      "count": 892
+    },
+    {
+      "word": "一声",
+      "count": 885
+    },
+    {
+      "word": "说话",
+      "count": 884
+    },
+    {
+      "word": "眼睛",
+      "count": 883
+    },
+    {
+      "word": "有人",
+      "count": 876
+    },
+    {
+      "word": "棺材",
+      "count": 876
+    },
+    {
+      "word": "是不是",
+      "count": 868
+    },
+    {
+      "word": "然后",
+      "count": 866
+    },
+    {
+      "word": "皱眉",
+      "count": 866
+    },
+    {
+      "word": "时间",
+      "count": 860
+    },
+    {
+      "word": "摇头",
+      "count": 860
+    },
+    {
+      "word": "刚才",
+      "count": 860
+    },
+    {
+      "word": "告诉",
+      "count": 840
+    },
+    {
+      "word": "一把",
+      "count": 826
+    },
+    {
+      "word": "立即",
+      "count": 810
+    },
+    {
+      "word": "回去",
+      "count": 808
+    },
+    {
+      "word": "这是",
+      "count": 807
+    },
+    {
+      "word": "下来",
+      "count": 806
+    },
+    {
+      "word": "脸上",
+      "count": 801
+    },
+    {
+      "word": "这时",
+      "count": 786
+    },
+    {
+      "word": "随后",
+      "count": 786
+    },
+    {
+      "word": "手电",
+      "count": 782
+    },
+    {
+      "word": "不要",
+      "count": 765
+    }
+  ],
+  "colloquial_words": {
+    "他娘的": 36,
+    "妈的": 492,
+    "我靠": 104,
+    "我草": 42,
+    "卧槽": 130,
+    "操": 148,
+    "草": 777,
+    "奶奶的": 12,
+    "他妈的": 278,
+    "他妈": 879,
+    "好家伙": 25,
+    "嘿": 304,
+    "哎": 546,
+    "嗨": 62,
+    "娘的": 74,
+    "狗日的": 5,
+    "孙子": 83,
+    "丫的": 5
+  },
+  "top_colloquial": [
+    {
+      "word": "他妈",
+      "count": 879
+    },
+    {
+      "word": "草",
+      "count": 777
+    },
+    {
+      "word": "哎",
+      "count": 546
+    },
+    {
+      "word": "妈的",
+      "count": 492
+    },
+    {
+      "word": "嘿",
+      "count": 304
+    }
+  ],
+  "description_ratios": {
+    "dialogue": 0.5211,
+    "action": 0.382,
+    "psychology": 0.0126,
+    "environment": 0.0844
+  },
+  "sample_chapters": [
+    {
+      "sample_number": 1,
+      "part": "开篇段",
+      "volume": 1,
+      "chapter_number": 1,
+      "chapter_label": "第1章",
+      "chapter_title": "离家",
+      "global_index": 1,
+      "saved_as": "chapter_sample_01.txt"
+    },
+    {
+      "sample_number": 2,
+      "part": "开篇段",
+      "volume": 1,
+      "chapter_number": 2,
+      "chapter_label": "第2章",
+      "chapter_title": "卖货",
+      "global_index": 2,
+      "saved_as": "chapter_sample_02.txt"
+    },
+    {
+      "sample_number": 3,
+      "part": "开篇段",
+      "volume": 1,
+      "chapter_number": 3,
+      "chapter_label": "第3章",
+      "chapter_title": "翻身",
+      "global_index": 3,
+      "saved_as": "chapter_sample_03.txt"
+    },
+    {
+      "sample_number": 4,
+      "part": "中段",
+      "volume": 2,
+      "chapter_number": 256,
+      "chapter_label": "第256章",
+      "chapter_title": "和水泥 吃烧鸡",
+      "global_index": 347,
+      "saved_as": "chapter_sample_04.txt"
+    },
+    {
+      "sample_number": 5,
+      "part": "中段",
+      "volume": 2,
+      "chapter_number": 257,
+      "chapter_label": "第257章",
+      "chapter_title": "意料之外",
+      "global_index": 348,
+      "saved_as": "chapter_sample_05.txt"
+    },
+    {
+      "sample_number": 6,
+      "part": "中段",
+      "volume": 2,
+      "chapter_number": 258,
+      "chapter_label": "第258章",
+      "chapter_title": "守你五十年",
+      "global_index": 349,
+      "saved_as": "chapter_sample_06.txt"
+    },
+    {
+      "sample_number": 7,
+      "part": "结尾段",
+      "volume": 4,
+      "chapter_number": 512,
+      "chapter_label": "第512章",
+      "chapter_title": "集合！",
+      "global_index": 1041,
+      "saved_as": "chapter_sample_07.txt"
+    },
+    {
+      "sample_number": 8,
+      "part": "结尾段",
+      "volume": 4,
+      "chapter_number": 513,
+      "chapter_label": "第513章",
+      "chapter_title": "水落石出 把头的四点合杀局",
+      "global_index": 1042,
+      "saved_as": "chapter_sample_08.txt"
+    },
+    {
+      "sample_number": 9,
+      "part": "结尾段",
+      "volume": 4,
+      "chapter_number": 514,
+      "chapter_label": "第514章",
+      "chapter_title": "旧时代 新机遇",
+      "global_index": 1043,
+      "saved_as": "chapter_sample_09.txt"
+    }
+  ],
+  "dialogue_tags": {
+    "说": 21403,
+    "道": 12614,
+    "喊": 1235,
+    "叫": 3364,
+    "问": 4742,
+    "答": 420,
+    "骂": 533,
+    "吼": 41,
+    "喃喃": 31,
+    "嘟囔": 26,
+    "嘀咕": 49,
+    "冷笑": 69,
+    "笑": 3721,
+    "说道": 578,
+    "答道": 16,
+    "问道": 91,
+    "喊道": 133,
+    "叫道": 50,
+    "骂道": 79,
+    "吼道": 7,
+    "笑道": 1003,
+    "开口": 620,
+    "插话": 19,
+    "喝道": 6,
+    "低声道": 15,
+    "高声道": 1,
+    "大声道": 176,
+    "小声道": 48
+  },
+  "top_dialogue_tag": "说"
+}
