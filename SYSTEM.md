@@ -321,28 +321,44 @@
 7. **【确认门】** 呈现提纲给总编，等确认。
 
 #### 4.2 写正文
-逐章写，每章流程：
+逐章写，每章流程（这是一个写→审→改的内部循环，总编看不到中间过程，只看最终通过版）：
+
+**初始写作**
 1. 委派Writer子Agent读 prompts/writing/writer.md
 2. Writer读取：风格规则layer0-5、本章细纲、人物卡、上一章结尾、可用素材、伏笔计划、corrections.json
 3. Writer输出正文+章节摘要
 4. 正文保存到 work/<novel_slug>/chapters/chapter_XXX.md
-5. **内部审稿**（必须全部通过才给总编看）：
-   - 文风审稿：读 prompts/review/style_reviewer.md，逐条对照layer0和layer2检查
-   - 逻辑审稿：读 prompts/review/logic_reviewer.md
-   - 合理性审稿：读 prompts/review/rationality_reviewer.md
-   - 反AI审稿：读 prompts/review/anti_ai_reviewer.md（AI浓度≤2分才通过）
-6. 运行工具检查：
-   - `python tools/check_ai_cliches.py <章节文件>` — AI套话必须为0
-   - `python tools/text_stats.py <章节文件> --json` — 字数、对话比例等统计数据对照layer2的目标范围
-7. 审稿结论：
-   - pass→进入下一章
-   - revise→修改后再检查
-   - rewrite→重写本章
-8. 每章最多重试3次，3次不过停下来向总编报告问题
-9. 全部章节审过后：
+
+**审稿-修改循环（内部自动执行，不打扰总编）**
+5. 运行4个审稿Agent+工具检查，汇总结论：
+   - 文风审稿（读 prompts/review/style_reviewer.md）→ pass/revise/rewrite
+   - 逻辑审稿（读 prompts/review/logic_reviewer.md）→ pass/revise/rewrite
+   - 合理性审稿（读 prompts/review/rationality_reviewer.md）→ pass/revise/rewrite
+   - 反AI审稿（读 prompts/review/anti_ai_reviewer.md）→ pass/revise/rewrite（AI浓度>2为revise，≥6为rewrite）
+   - AI套话检查：`python tools/check_ai_cliches.py <章节文件>` — 有套话=revise
+   - 统计检查：`python tools/text_stats.py <章节文件> --json` — 对照layer2目标范围，偏差大=revise
+6. 综合判定（取最严格的结论）：
+   - **全部pass** → 审稿循环结束，进入下一章
+   - **有revise，无rewrite** → 执行修改：
+     a. 把所有审稿报告（指出具体问题和修改建议）汇总给Writer子Agent
+     b. 指令："在现有正文基础上修改，修正以下问题：[问题清单]。不要重写整章，只改有问题的段落。"
+     c. Writer输出修改后的正文，覆盖保存到原章节文件
+     d. 修改后，只重跑**指出问题的那几个审稿**（文风问题只重跑文风审稿，逻辑问题只重跑逻辑审稿），全部pass才算过
+     e. revise最多执行2次（即总共可以修改2轮），第2次修改后仍有revise→升级为rewrite
+   - **有任何一个审稿给了rewrite** → 执行重写：
+     a. 告诉Writer重写本章，附带上一轮rewrite原因（"文风完全不符合""AI浓度过高""逻辑硬伤"等）+审稿报告中的具体问题
+     b. Writer从零写一版新正文，覆盖保存
+     c. 重写后全部4个审稿重跑
+7. 每章（含修改）最多尝试3轮，3轮后仍有审稿不通过→**停止内部循环，向总编报告问题**：
+   - 报告内容：第几章、哪个审稿不通过、具体问题是什么、3轮尝试分别改了什么、建议总编如何决策（改方向/换思路/总编亲自指示）
+   - 等总编指示后再继续
+
+**审稿循环结束后**
+8. 全部章节审稿通过后：
    - 更新Bible（人物、伏笔、时间线、热点使用记录）
-   - 审稿记录保存到 work/<novel_slug>/reviews/batch001_review.md
-10. **【确认门】** 呈现给总编：正文+摘要+统计+审稿情况，等确认。
+   - 所有审稿记录保存到 work/<novel_slug>/reviews/batchXXX/ 目录（每章4个审稿报告）
+   - 生成批次摘要：总字数、统计数据概览、审稿发现的问题和修改了几轮
+9. **【确认门】** 呈现给总编：正文+摘要+统计+审稿修改情况（改了几轮、改了什么类型的问题），等总编确认。
 
 ---
 
