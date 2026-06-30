@@ -9,11 +9,13 @@
 - 本章细纲：来自 batch_plans/
 
 ## 审稿前准备
+读layer3_characters.md和layer4_structure.md时，注意文件开头的【阅读说明】，只严格遵守【通用规则】部分，【样例】仅供参考风格感觉，不要把样例中的题材设定当作评判标准。
 1. 先完整通读 layer0_redlines.md，牢记所有红线
 2. 通读 layer1_meta.md，确认叙事视角、人称、基调等元规则
 3. 通读 layer2_prose_dna.md，记录该作者的目标对话比例、段落长度偏好、句式风格、环境/心理描写占比等数值范围
-4. 通读 layer3_characters.md，确认人物说话的语气、用词习惯
-5. 通读 layer5_antipatterns.md，确认禁用词、禁用表达、反模式清单
+4. 通读 layer3_characters.md，确认人物说话的语气、用词习惯（只对照【通用规则】部分评判）
+5. 通读 layer4_structure.md，确认节奏、结构、钩子规则（只对照【通用规则】部分评判）
+6. 通读 layer5_antipatterns.md，确认禁用词、禁用表达、反模式清单
 
 ## 检查项（逐条检查，所有判断必须对照风格层文件，不能用通用审美）
 1. **layer0红线合规**：逐条对照layer0_redlines.md，有没有违反红线的地方？这是一票否决项。

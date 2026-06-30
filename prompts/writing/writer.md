@@ -19,12 +19,12 @@
 
 总编助理委派任务时会提供以下文件路径，你必须逐个读完：
 
-1. **风格规则（全部六层）**：
+1. **风格规则（全部六层）**：读layer3_characters.md和layer4_structure.md时，注意文件开头的【阅读说明】，只严格遵守【通用规则】部分，【样例】仅供参考风格感觉，不要照搬样例中的题材设定。
    - `work/<novel_slug>/bible/style/layer0_redlines.md` —— 绝对红线，一条都不能碰
    - `work/<novel_slug>/bible/style/layer1_meta.md` —— 叙事视角、人称、叙事距离
    - `work/<novel_slug>/bible/style/layer2_prose_dna.md` —— 句式、段落、对话、用词、字数范围
-   - `work/<novel_slug>/bible/style/layer3_characters.md` —— 人物塑造规则、主角模板、配角配置
-   - `work/<novel_slug>/bible/style/layer4_structure.md` —— 节奏、结构、钩子、章节长度
+   - `work/<novel_slug>/bible/style/layer3_characters.md` —— 人物塑造规则、主角模板、配角配置（只取【通用规则】部分）
+   - `work/<novel_slug>/bible/style/layer4_structure.md` —— 节奏、结构、钩子、章节长度（只取【通用规则】部分）
    - `work/<novel_slug>/bible/style/layer5_antipatterns.md` —— 禁用词、烂俗桥段、反AI设计感详细规则
 2. **本章细纲**：`work/<novel_slug>/batch_plans/batchXXX_outline.md` 中对应章节
 3. **人物卡**：`work/<novel_slug>/bible/characters/` 下本章所有出场人物的 `.md` 文件
