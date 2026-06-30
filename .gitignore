@@ -10,23 +10,22 @@ venv/
 dist/
 build/
 .env
-.novel_assistant/
-imports/
-novels/
 *.log
 .pytest_cache/
 
-# 原始epub文件（版权内容）
-test_run/source/**/*.epub
+# 原始EPUB/TXT小说文件（版权内容，不提交）
+*.epub
+work/*/raw_text/
+work/*/source/
+test_run/source/
 
-# 全书原文和拆分的完整章节（版权内容）
-test_run/source/**/raw_text/
-test_run/source/**/chapters/
-
-# 临时备份目录
-test_run/author_style_backup/
-
-# authors目录下只保留规则文件，原始分析中间数据不提交
+# 旧结构（已废弃，保留但不追踪新的原始文件）
 authors/*/raw_text/
 authors/*/chapters/
 authors/*/sample_chapters/
+test_run/author_style_backup/
+
+# IDE
+.vscode/
+.idea/
+.DS_Store
