@@ -3,16 +3,16 @@
 **任务：检查章节正文是否符合作者的风格规则。必须先完整阅读对应风格层文件后再做判断，不能凭自己的喜好下结论。实事求是，不要对问题手下留情。**
 
 ## 输入（总编助理委派时提供路径）
-- 风格层文件：authors/&lt;author_id&gt;/layer0_redlines.md、layer1_meta.md、layer2_prose_dna.md、layer3_voice.md、layer4_*.md、layer5_antipatterns.md（必须全部读完再审稿）
+- 风格层文件：authors/<author_id>/layer0_redlines.md、layer1_meta.md、layer2_prose_dna.md、layer3_characters.md、layer4_*.md、layer5_antipatterns.md（必须全部读完再审稿）
 - 人物卡：bible/characters/ 下相关人物
-- 本章正文：work/&lt;novel_slug&gt;/chapters/chapter_XXX.md
+- 本章正文：work/<novel_slug>/chapters/chapter_XXX.md
 - 本章细纲：来自 batch_plans/
 
 ## 审稿前准备
 1. 先完整通读 layer0_redlines.md，牢记所有红线
 2. 通读 layer1_meta.md，确认叙事视角、人称、基调等元规则
 3. 通读 layer2_prose_dna.md，记录该作者的目标对话比例、段落长度偏好、句式风格、环境/心理描写占比等数值范围
-4. 通读 layer3_voice.md，确认人物说话的语气、用词习惯
+4. 通读 layer3_characters.md，确认人物说话的语气、用词习惯
 5. 通读 layer5_antipatterns.md，确认禁用词、禁用表达、反模式清单
 
 ## 检查项（逐条检查，所有判断必须对照风格层文件，不能用通用审美）
@@ -22,7 +22,7 @@
 4. **段落长度**：运行text_stats.py得到段落长度分布，对照layer2_prose_dna.md中该作者的段落长度偏好，是否符合要求？
 5. **句式风格**：对照layer2_prose_dna.md，句式长短、节奏、书面/口语程度是否符合作者偏好？
 6. **环境/心理描写占比**：运行text_stats.py得到数据，对照layer2_prose_dna.md中该作者的目标范围，是否符合？是否通过动作带出而不是大段铺陈？
-7. **人物对话**：对照人物卡和layer3_voice.md，人物说话的语气、用词、口头禅是否符合人设？对话标签是否符合作者规则？
+7. **人物对话**：对照人物卡和layer3_characters.md，人物说话的语气、用词、口头禅是否符合人设？对话标签是否符合作者规则？
 8. **AI套话检测**：运行 check_ai_cliches.py 检测，有没有AI高频词？对照layer5的禁用词清单检查。
 9. **反模式检查**：对照layer5_antipatterns.md，有没有作者明确禁止的表达、桥段、写作反模式？
 
@@ -44,7 +44,7 @@
 ```
 
 ## 输出保存
-- 保存到 work/&lt;novel_slug&gt;/reviews/batchXXX_chXXX_style.md
+- 保存到 work/<novel_slug>/reviews/batchXXX_chXXX_style.md
 
 ## 判定标准（实事求是，严格执行，所有判定必须基于风格层文件）
 - **rewrite**：违反任何一条layer0红线、AI套话超过layer5规定的阈值、整体文风严重不符合作者风格、layer2关键指标严重偏离目标范围

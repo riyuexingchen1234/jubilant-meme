@@ -10,17 +10,19 @@
 2. 作者标识 `<author_slug>`
 
 你需要读取以下文件：
-- `work/<author_slug>/distill/preprocess_report.md`
-- `work/<author_slug>/distill/statistics.md`
-- `work/<author_slug>/distill/layers/layer0_redlines.md`
-- `work/<author_slug>/distill/layers/layer1_meta.md`
-- `work/<author_slug>/distill/layers/layer2_prose_dna.md`
-- `work/<author_slug>/distill/layers/layer3_characters.md`
-- `work/<author_slug>/distill/layers/layer4_structure.md`
-- `work/<author_slug>/distill/layers/layer5_antipatterns.md`
+- `work/_distill/<author_slug>/preprocess_report.md`
+- `work/_distill/<author_slug>/statistics.md`
+- `authors/<author_slug>/layer0_redlines.md`
+- `authors/<author_slug>/layer1_meta.md`
+- `authors/<author_slug>/layer2_prose_dna.md`
+- `authors/<author_slug>/layer3_characters.md`
+- `authors/<author_slug>/layer4_structure.md`
+- `authors/<author_slug>/layer5_antipatterns.md`
 
 # 输出保存到哪里
-将校验报告保存为：`work/<author_slug>/distill/validation_report.md`
+将校验报告保存为：`work/_distill/<author_slug>/validation_report.md`
+
+这是蒸馏过程的临时中间文件，不是最终产物。校验通过后，总编助理会将authors/下的layer0-5正式提交到Git。
 
 # 你必须遵守的规则
 1. **唯一标准**：校验通过的标准是"读起来像同一个作者写的"，不是"规则覆盖了所有点"，也不是"统计指标都对"

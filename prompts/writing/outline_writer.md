@@ -15,7 +15,7 @@
   - 当前时间线（小说内现在是哪年哪月哪日几点）
   - 本批可用热点素材（如果layer4要求热点融入模式）
   - 主线进度（当前推进到哪了）
-- 风格规则：work/&lt;novel_slug&gt;/bible/style/layer0-5.md（必须严格遵守，特别是layer0红线）
+- 风格规则：work/<novel_slug>/bible/style/layer0-5.md（必须严格遵守，特别是layer0红线）
 - 出场人物卡：bible/characters/ 下相关人物
 - 总大纲当前进度（outline.md）
 
@@ -52,7 +52,7 @@
 
 ## 输出保存
 - 输出为Markdown格式
-- 保存到 work/&lt;novel_slug&gt;/batch_plans/batchXXX_outline.md（XXX为批次号，从001开始）
+- 保存到 work/<novel_slug>/batch_plans/batchXXX_outline.md（XXX为批次号，从001开始）
 
 ## 绝对禁止
 - 主线推进速度违反layer4规定——不要推太快也不要推太慢

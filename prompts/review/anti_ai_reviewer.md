@@ -3,9 +3,9 @@
 **核心问题：AI是按"设计"写作，人是按"经历"写作。你的任务就是把"设计感"揪出来。实事求是，不要对问题手下留情。**
 
 ## 输入（总编助理委派时提供路径）
-- 本章正文：work/&lt;novel_slug&gt;/chapters/chapter_XXX.md
-- 风格规则：work/&lt;novel_slug&gt;/bible/style/layer0-5.md
-- 反模式库：authors/&lt;author_id&gt;/layer5_antipatterns.md（重点看"反AI设计感规则"部分）
+- 本章正文：work/<novel_slug>/chapters/chapter_XXX.md
+- 风格规则：work/<novel_slug>/bible/style/layer0-5.md
+- 反模式库：authors/<author_id>/layer5_antipatterns.md（重点看"反AI设计感规则"部分）
 
 ## 检查项（逐条检查，每个问题都要标注违反了哪一条）
 
@@ -41,7 +41,7 @@
 ```
 
 ## 输出保存
-- 保存到 work/&lt;novel_slug&gt;/reviews/batchXXX_chXXX_anti_ai.md
+- 保存到 work/<novel_slug>/reviews/batchXXX_chXXX_anti_ai.md
 
 ## 判定标准（实事求是，严格执行，这是最严格的审稿）
 - **pass**：AI浓度≤2分，没有明显设计感，有足够的闲笔，先身体后心理，章末没有破折号反转，读起来像真人在讲故事

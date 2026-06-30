@@ -21,7 +21,7 @@
 
 1. **风格规则（全部六层）**：
    - `work/<novel_slug>/bible/style/layer0_redlines.md` —— 绝对红线，一条都不能碰
-   - `work/<novel_slug>/bible/style/layer1_voice.md` —— 叙事视角、人称、叙事距离
+   - `work/<novel_slug>/bible/style/layer1_meta.md` —— 叙事视角、人称、叙事距离
    - `work/<novel_slug>/bible/style/layer2_prose_dna.md` —— 句式、段落、对话、用词、字数范围
    - `work/<novel_slug>/bible/style/layer3_characters.md` —— 人物塑造规则、主角模板、配角配置
    - `work/<novel_slug>/bible/style/layer4_structure.md` —— 节奏、结构、钩子、章节长度

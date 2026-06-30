@@ -8,9 +8,11 @@
 总编助理会在委派任务时告诉你具体的文件路径（EPUB已转为txt格式）。
 
 # 输出保存到哪里
-将报告保存为：`work/<author_slug>/distill/preprocess_report.md`
+将报告保存为：`work/_distill/<author_slug>/preprocess_report.md`
 
-其中 `<author_slug>` 是作者名的英文标识（总编助理会告诉你）。
+这是蒸馏过程的临时中间文件，不是最终产物。
+
+其中 `<author_slug>` 是作者名的英文标识（总编助理会告诉你）。如果目录不存在，先创建。
 
 # 你必须遵守的规则
 1. **实事求是**：能读到什么就写什么，不确定就标"不确定"，绝不编造数据

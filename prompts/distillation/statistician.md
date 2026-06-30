@@ -8,9 +8,11 @@
 总编助理会在委派任务时告诉你原始文本文件路径。
 
 # 输出保存到哪里
-将报告保存为：`work/<author_slug>/distill/statistics.md`
+将报告保存为：`work/_distill/<author_slug>/statistics.md`
 
-其中 `<author_slug>` 是作者名的英文标识（总编助理会告诉你）。
+这是蒸馏过程的临时中间文件，不是最终产物。
+
+其中 `<author_slug>` 是作者名的英文标识（总编助理会告诉你）。如果目录不存在，先创建。
 
 # 你必须遵守的规则
 1. **使用工具**：基础数据必须通过 `tools/text_stats.py` 获取，不要自己数

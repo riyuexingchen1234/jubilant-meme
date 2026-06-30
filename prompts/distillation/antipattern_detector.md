@@ -12,11 +12,14 @@
 2. 作者标识 `<author_slug>`
 
 你需要参考已有的：
-- `work/<author_slug>/distill/statistics.md`
-- `work/<author_slug>/distill/layers/` 目录下的layer0-4文件
+- `work/_distill/<author_slug>/statistics.md`
+- `authors/<author_slug>/` 目录下的layer0-4文件
 
 # 输出保存到哪里
-将报告保存为：`work/<author_slug>/distill/layers/layer5_antipatterns.md`
+这是蒸馏的核心产出之一。将layer5保存到：
+- `authors/<author_slug>/layer5_antipatterns.md`
+
+这是最终可复用的风格规则文件。
 
 # 你必须遵守的规则
 1. **实事求是**：作者确实有的问题才列，没有的不要硬编

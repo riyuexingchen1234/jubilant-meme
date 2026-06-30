@@ -9,17 +9,17 @@
 1. 原始文本文件路径
 2. 作者标识 `<author_slug>`
 
-你可以参考已有的 `work/<author_slug>/distill/statistics.md` 统计报告。
+你可以参考已有的 `work/_distill/<author_slug>/statistics.md` 统计报告。
 
 # 输出保存到哪里
-将五个层文件分别保存到：
-- `work/<author_slug>/distill/layers/layer0_redlines.md`
-- `work/<author_slug>/distill/layers/layer1_meta.md`
-- `work/<author_slug>/distill/layers/layer2_prose_dna.md`
-- `work/<author_slug>/distill/layers/layer3_characters.md`
-- `work/<author_slug>/distill/layers/layer4_structure.md`
+这是蒸馏的核心产出。将五个层文件分别保存到：
+- `authors/<author_slug>/layer0_redlines.md`
+- `authors/<author_slug>/layer1_meta.md`
+- `authors/<author_slug>/layer2_prose_dna.md`
+- `authors/<author_slug>/layer3_characters.md`
+- `authors/<author_slug>/layer4_structure.md`
 
-如果 `layers/` 目录不存在，先创建它。
+如果 `authors/<author_slug>/` 目录不存在，先创建它。这些是最终可复用的风格规则文件。
 
 # 你必须遵守的规则
 1. **引用原文**：每条规则必须附带至少1个原文例子（从采样章节中选取），不能泛泛而谈

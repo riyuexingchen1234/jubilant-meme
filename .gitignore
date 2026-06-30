@@ -17,6 +17,7 @@ build/
 *.epub
 work/*/raw_text/
 work/*/source/
+work/_distill/*/raw_text.txt
 test_run/source/
 
 # 旧结构（已废弃，保留但不追踪新的原始文件）

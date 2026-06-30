@@ -5,9 +5,9 @@
 ## 输入（总编助理委派时提供路径）
 - 人物卡（全部）：bible/characters/
 - 时间线摘要：bible/timeline.md
-- 伏笔表：bible/foreshadows.md
+- 伏笔表：bible/foreshadows.json
 - 近5章摘要：来自 chapters/ 的摘要
-- 本章正文：work/&lt;novel_slug&gt;/chapters/chapter_XXX.md
+- 本章正文：work/<novel_slug>/chapters/chapter_XXX.md
 - 本章细纲：来自 batch_plans/
 
 ## 检查项（逐条检查）
@@ -35,7 +35,7 @@
 ```
 
 ## 输出保存
-- 保存到 work/&lt;novel_slug&gt;/reviews/batchXXX_chXXX_logic.md
+- 保存到 work/<novel_slug>/reviews/batchXXX_chXXX_logic.md
 
 ## 判定标准（实事求是，严格执行）
 - **pass**：没有逻辑硬伤，时间线、人物行为、伏笔都连贯，状态一致

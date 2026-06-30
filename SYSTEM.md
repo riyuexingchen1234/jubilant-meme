@@ -4,6 +4,18 @@
 
 ---
 
+## 【启动检查清单】读完本文件后立刻做以下事情，不要跳过：
+
+1. **检查工作目录**：运行 `ls /workspace/`，确认SYSTEM.md、prompts/、authors/、tools/、work/ 都存在
+2. **检查已有作者风格**：运行 `ls /workspace/authors/`，看有哪些已蒸馏的作者
+3. **检查进行中的小说**：运行 `ls /workspace/work/`，看有没有正在创作的小说
+4. **检查Git状态**：运行 `cd /workspace && git status && git log --oneline -3`，确认仓库状态正常
+5. **向总编汇报**：用简洁的表格/列表汇报：系统就绪、可用作者风格、是否有进行中的小说
+6. **询问总编要做什么**：给出选项：a)蒸馏新风格 b)开新小说 c)继续已有小说 d)其他
+7. **等总编明确指令后再开始**，不要自行启动任何工作流
+
+---
+
 ## 〇、最高原则（优先级高于一切）
 
 **作者风格规则layer0-5是写作的唯一标准。**
@@ -206,20 +218,20 @@
 **触发**：总编说"蒸馏这本书的风格"并提供小说文件（EPUB/TXT）。
 
 **步骤**：
-1. 如果是EPUB，先用 `python tools/epub_to_text.py <epub路径> work/<author_slug>/raw_text.txt` 转成文本
+1. 如果是EPUB，先用 `python tools/epub_to_text.py <epub路径> work/_distill/<author_slug>/raw_text.txt` 转成文本（TXT文件也复制到这个位置）
 2. 委派子Agent依次执行蒸馏流程，每一步读对应的Prompt：
-   - 读 prompts/distillation/preprocessor.md 做文本质量检查
-   - 读 prompts/distillation/statistician.md 做量化统计
-   - 读 prompts/distillation/literature_analyst.md 做文学分析（产出layer0-4）
-   - 读 prompts/distillation/antipattern_detector.md 做反模式检测（产出layer5）
-   - 读 prompts/distillation/validator.md 做试写校验
-3. 子Agent将六层规则保存到 authors/<author_slug>/ 目录下（layer0-5.md）
+   - 读 prompts/distillation/preprocessor.md 做文本质量检查（输出到work/_distill/）
+   - 读 prompts/distillation/statistician.md 做量化统计（输出到work/_distill/）
+   - 读 prompts/distillation/literature_analyst.md 做文学分析（产出layer0-4，直接保存到authors/<author_slug>/）
+   - 读 prompts/distillation/antipattern_detector.md 做反模式检测（产出layer5，直接保存到authors/<author_slug>/）
+   - 读 prompts/distillation/validator.md 做试写校验（输出到work/_distill/）
+3. 最终六层规则保存到 authors/<author_slug>/ 目录下（layer0-5.md），中间报告在work/_distill/下
 4. 蒸馏完成后，给总编呈现：
    - 统计摘要（关键数字）
    - 六层规则的核心要点
-   - 校验是否通过
-5. **【确认门】** 等总编确认。如果总编说某个层不对，让子Agent修改后重新呈现。
-6. 确认通过后，Git提交。
+   - 校验是否通过、试写段落对比
+5. **【确认门】** 等总编确认。如果总编说某个层不对，让子Agent修改authors/下对应文件后重新校验。
+6. 确认通过后，清理work/_distill/<author_slug>/中的临时文件（或保留供参考），Git提交authors/。
 
 ---
 
