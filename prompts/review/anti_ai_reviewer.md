@@ -4,8 +4,7 @@
 
 ## 输入（总编助理委派时提供路径）
 - 本章正文：work/<novel_slug>/chapters/chapter_XXX.md
-- 风格规则：work/<novel_slug>/bible/style/layer0-5.md
-- 反模式库：authors/<author_id>/layer5_antipatterns.md（重点看"反AI设计感规则"部分）
+- 风格规则：work/<novel_slug>/bible/style/layer0-5.md（开书时从authors/复制过来的，重点看layer5的"反AI设计感规则"部分）
 
 ## 检查项（逐条检查，每个问题都要标注违反了哪一条）
 

@@ -3,7 +3,7 @@
 **任务：检查章节正文是否符合作者的风格规则。必须先完整阅读对应风格层文件后再做判断，不能凭自己的喜好下结论。实事求是，不要对问题手下留情。**
 
 ## 输入（总编助理委派时提供路径）
-- 风格层文件：authors/<author_id>/layer0_redlines.md、layer1_meta.md、layer2_prose_dna.md、layer3_characters.md、layer4_*.md、layer5_antipatterns.md（必须全部读完再审稿）
+- 风格层文件：work/<novel_slug>/bible/style/layer0_redlines.md、layer1_meta.md、layer2_prose_dna.md、layer3_characters.md、layer4_*.md、layer5_antipatterns.md（开书时从authors/复制过来的，必须全部读完再审稿）
 - 人物卡：bible/characters/ 下相关人物
 - 角色动态状态卡：bible/character_state.md（检查人物当前情绪/状态是否在文风中有合理体现）
 - 本章正文：work/<novel_slug>/chapters/chapter_XXX.md

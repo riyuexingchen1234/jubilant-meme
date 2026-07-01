@@ -114,7 +114,8 @@
 │       │   └── corrections.json   总编反馈修正记录
 │       ├── chapters/              章节正文
 │       ├── batch_plans/           每批提纲
-│       └── reviews/               审稿记录
+│       ├── reviews/               审稿记录
+│       └── feedback/              总编反馈处理记录
 └── requirements.txt
 ```
 
@@ -310,16 +311,23 @@
 
 ### 阶段2C：总编指定题材（仅模式C）
 
-**触发**：总编选择模式C并给出题材方向。
+**触发**：总编选择模式C并给出写作方向（职业/时代/地域/感觉/题材类型等）。
 
 **步骤**：
-1. 委派子Agent针对总编指定的题材方向做调研：
-   - 相关行当/场景的真实素材
-   - 类似作品参考
-   - 需要了解的背景知识
-2. 保存到 work/<novel_slug>/research/supplementary_research.md
-3. **【确认门】** 等总编确认调研充分
-4. Git提交。
+1. 委派选题策划子Agent（读 prompts/planning/topic_planner.md，模式=C）：
+   - 必读文件同模式A（风格层+genre_market_map）
+   - 不需要读recent_seeds（但会主动WebSearch搜相关真实事件）
+   - 基于总编方向出**2-3个差异化方案**
+   - 每个方案必须：做真实职业/方向调研、三维度评分（读者吸引力≥7）、传导机制≥5条、暗线设计、配角配比、开篇场景
+   - 2-3个方案在主角处境、入口事件类型、城市、矛盾类型、吸引点上必须有实质差异
+2. 结果保存到 `work/_research/topic_proposals_{author_id}.md`
+3. 呈现给总编：2-3个方案的核心摘要（入口事件、主角身份、三维度评分、一句话钩子）、推荐排序
+4. **【确认门】** 等总编选择或PASS：
+   - 选了一个→进入补充调研
+   - PASS/不满意→问清楚哪里不满意，让子Agent重新出方案
+5. 定题后补充调研：针对选中方案的待调研点深入搜索，保存到 `work/_research/supplementary_{novel_slug}.md`
+6. **【确认门】** 等总编确认补充调研充分
+7. Git提交。
 
 ---
 
@@ -521,6 +529,6 @@
 
 ---
 
-**手册版本：v4.1**
+**手册版本：v4.2**
 **最后更新：2026-07-01**
-**v4.1变更：新增动态状态管理系统——角色动态状态卡（character_state.md）、伏笔/剧情弧光追踪表（plot_arcs.md）、近期章节滚动摘要（recent_summary.md），每章定稿后由state_updater自动更新；章节点元数据细化（章节定位/情感基调/伏笔操作/认知颠覆等级）；Writer和审稿Agent基于状态文件做连续性检查，解决"写到后面忘了前面"的OOC/状态矛盾/伏笔遗忘问题；参考AI_NovelGenerator开源项目的状态追踪思路优化**
+**v4.2变更：补全模式C（总编指定方向）完整流程——模式C走topic_planner出2-3个差异化方案+职业真实调研+三维度评分+市场校验，不再直接跳到开书策划；补全模式B说明；新增world.md城市/行当/场景设定（opening_planner创建）；outline.md总大纲由opening_planner创建；修复审稿Agent路径一致性问题（开书后读bible/style/而非authors/）；增加feedback/目录；prompt索引完善**
