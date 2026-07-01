@@ -33,10 +33,11 @@
 6. **近期章节摘要**：`work/<novel_slug>/bible/recent_summary.md` —— 最近5-8章的简洁摘要，帮你快速了解前文发生了什么
 7. **时间线**：`work/<novel_slug>/bible/timeline.md` —— 当前小说内时间点，确保本章时间推进合理
 8. **上一章结尾**：上一章正文最后1000字，保证衔接自然
-9. **可用素材**：相关热点素材、调研素材（如果有）
-10. **伏笔说明**：本章需要埋伏笔/回收伏笔的具体要求（与plot_arcs.md对应）
-11. **corrections.json**：历史修正记录，避免重复犯同样的错误
-12. **总大纲**：`work/<novel_slug>/bible/outline.md`，理解当前在全书结构中的位置
+9. **总编素材库**：`work/<novel_slug>/materials/` 目录下所有未使用的素材（events/、domain_knowledge/、character_inspiration/、scene_inspiration/、other/），优先使用总编提供的素材
+10. **热点素材**：相关热点素材（如果有）
+11. **伏笔说明**：本章需要埋伏笔/回收伏笔的具体要求（与plot_arcs.md对应）
+12. **corrections.json**：历史修正记录，避免重复犯同样的错误（必须读！）
+13. **总大纲**：`work/<novel_slug>/bible/outline.md`，理解当前在全书结构中的位置
 
 ---
 
