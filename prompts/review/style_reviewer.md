@@ -5,6 +5,7 @@
 ## 输入（总编助理委派时提供路径）
 - 风格层文件：authors/<author_id>/layer0_redlines.md、layer1_meta.md、layer2_prose_dna.md、layer3_characters.md、layer4_*.md、layer5_antipatterns.md（必须全部读完再审稿）
 - 人物卡：bible/characters/ 下相关人物
+- 角色动态状态卡：bible/character_state.md（检查人物当前情绪/状态是否在文风中有合理体现）
 - 本章正文：work/<novel_slug>/chapters/chapter_XXX.md
 - 本章细纲：来自 batch_plans/
 

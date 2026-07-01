@@ -101,12 +101,16 @@
 │       ├── hotspots/              热点素材库（仅热点模式）
 │       ├── bible/                 Novel Bible
 │       │   ├── style/             作者风格规则（从authors/复制，开书时确定）
-│       │   ├── characters/        人物卡
+│       │   ├── characters/        人物卡（静态初始设定）
+│       │   ├── character_state.md 角色动态状态卡（每章更新，当前快照）
+│       │   ├── plot_arcs.md       伏笔/剧情弧光追踪表（每章更新）
+│       │   ├── recent_summary.md  近期章节滚动摘要（每章更新，最近5-8章）
 │       │   ├── world.md           世界/场景设定
 │       │   ├── outline.md         总大纲
 │       │   ├── dark_thread.md     暗线/主线设计（如果小说有暗线）
-│       │   ├── timeline.md        时间线
-│       │   ├── foreshadows.json   伏笔地图
+│       │   ├── social_network.md  热点传导网络
+│       │   ├── timeline.md        时间线（每章更新）
+│       │   ├── foreshadows.json   （弃用，由plot_arcs.md替代）
 │       │   └── corrections.json   总编反馈修正记录
 │       ├── chapters/              章节正文
 │       ├── batch_plans/           每批提纲
@@ -337,7 +341,13 @@
 6. 确认通过后：
    - 创建 meta.yaml（小说元信息：slug、标题、作者风格、模式、批量大小、当前章节、创建日期等）
    - 从 authors/<author_slug>/ 复制风格规则到 work/<novel_slug>/bible/style/
-   - 创建空的 corrections.json、foreshadows.json、timeline.md
+   - 创建空的 corrections.json
+   - **初始化动态状态文件**（由opening_planner完成，不是空文件，要填入初始状态）：
+     - character_state.md：各角色故事开始前的初始状态
+     - plot_arcs.md：初始伏笔规划（分配F001起的ID）、主线/暗线初始状态、开篇已有的未解决冲突
+     - timeline.md：设置开篇时间起点
+     - recent_summary.md：初始为空或写"故事尚未开始"
+   - social_network.md由opening_planner创建
 7. Git提交。
 
 ---
@@ -364,7 +374,7 @@
 
 **初始写作**
 1. 委派Writer子Agent读 prompts/writing/writer.md
-2. Writer读取：风格规则layer0-5、本章细纲、人物卡、上一章结尾、可用素材、伏笔计划、corrections.json
+2. Writer读取：风格规则layer0-5、本章细纲、人物卡、角色动态状态卡（character_state.md）、伏笔追踪表（plot_arcs.md）、近期摘要（recent_summary.md）、时间线（timeline.md）、上一章结尾、可用素材、corrections.json、总大纲
 3. Writer输出正文+章节摘要
 4. 正文保存到 work/<novel_slug>/chapters/chapter_XXX.md
 
@@ -393,11 +403,14 @@
    - 等总编指示后再继续
 
 **审稿循环结束后**
-8. 全部章节审稿通过后：
-   - 更新Bible（人物、伏笔、时间线、热点使用记录）
+8. 每章审稿通过后，**立即委派状态更新子Agent**：
+   - 读 prompts/writing/state_updater.md
+   - 更新四个动态状态文件：character_state.md、plot_arcs.md、timeline.md、recent_summary.md
+   - 状态更新完成后检查：有没有⚠️超期未回收的伏笔，记录下来给下一批提纲参考
+9. 全部章节审稿通过+状态更新后：
    - 所有审稿记录保存到 work/<novel_slug>/reviews/batchXXX/ 目录（每章4个审稿报告）
-   - 生成批次摘要：总字数、统计数据概览、审稿发现的问题和修改了几轮
-9. **【确认门】** 呈现给总编：正文+摘要+统计+审稿修改情况（改了几轮、改了什么类型的问题），等总编确认。
+   - 生成批次摘要：总字数、统计数据概览、审稿修改情况（改了几轮、什么类型的问题）、本批伏笔动作汇总、人物状态变化汇总
+10. **【确认门】** 呈现给总编：正文+摘要+统计+审稿修改情况+状态更新汇总（人物变化、伏笔动作），等总编确认。
 
 ---
 
@@ -411,7 +424,8 @@
    - **【确认门】** 呈现热点，总编可以确认/指定/补充/说这批不要热点
 
 2. **写提纲**
-   - 同4.1，但要衔接上一批，读取当前Bible状态
+   - 同4.1，但要读取当前动态状态文件（character_state.md、plot_arcs.md、timeline.md、recent_summary.md）以衔接上一批
+   - 特别注意plot_arcs.md中⚠️超期未回收的伏笔，必须在本批安排推进或说明为什么不推进
    - **【确认门】** 等总编确认提纲
 
 3. **写正文**
@@ -465,6 +479,7 @@
 | 开书策划 | prompts/planning/opening_planner.md |
 | 写提纲 | prompts/writing/outline_writer.md |
 | 写正文 | prompts/writing/writer.md |
+| 状态更新（每章定稿后） | prompts/writing/state_updater.md |
 | 审稿-文风 | prompts/review/style_reviewer.md |
 | 审稿-逻辑 | prompts/review/logic_reviewer.md |
 | 审稿-反AI | prompts/review/anti_ai_reviewer.md |
@@ -506,6 +521,6 @@
 
 ---
 
-**手册版本：v4.0**
+**手册版本：v4.1**
 **最后更新：2026-07-01**
-**v4.0变更：选题流程重构——事件种子先行（先找近15-30天正在发生的变化/事件，再围绕事件定主角位置）；增加网文题材市场参考地图（genre_market_map.md）；三维度评分（事件敏感度/读者吸引力/题材新鲜度），读者吸引力权重最高；禁止职业刻板印象，要求真实调研职业生态；年度调研降级为可选；增加入口事件/种子设计概念**
+**v4.1变更：新增动态状态管理系统——角色动态状态卡（character_state.md）、伏笔/剧情弧光追踪表（plot_arcs.md）、近期章节滚动摘要（recent_summary.md），每章定稿后由state_updater自动更新；章节点元数据细化（章节定位/情感基调/伏笔操作/认知颠覆等级）；Writer和审稿Agent基于状态文件做连续性检查，解决"写到后面忘了前面"的OOC/状态矛盾/伏笔遗忘问题；参考AI_NovelGenerator开源项目的状态追踪思路优化**
