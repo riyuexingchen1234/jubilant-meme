@@ -21,7 +21,7 @@
 - 角色：创作端，负责所有写的活（选题、策划、提纲、正文）
 - 启动：新开一个Trae会话，第一条消息发：
   ```
-  读 [/workspace](https://github.com/riyuexingchen1234/jubilant-meme/tree/main的)/prompts/writer.md，你现在是写稿会话，负责小说创作。
+  读 https://github.com/riyuexingchen1234/jubilant-meme/tree/main的/prompts/writer.md，你现在是写稿会话，负责小说创作。
   ```
 - 长期开着，不要关。
 
@@ -29,7 +29,7 @@
 - 角色：独立第三方审稿人，只挑错，不写东西
 - 启动：新开一个Trae会话，第一条消息发：
   ```
-  读 [/workspace](https://github.com/riyuexingchen1234/jubilant-meme/tree/main的)/prompts/reviewer.md，你现在是独立审稿会话，只负责审稿挑错。
+  读 https://github.com/riyuexingchen1234/jubilant-meme/tree/main的/prompts/reviewer.md，你现在是独立审稿会话，只负责审稿挑错。
   ```
 - 长期开着，不要关。**绝对不要在这个会话里说"帮我写个东西"，它只审稿。**
 
@@ -37,7 +37,7 @@
 - 角色：事实调研员，负责找真实信息、验证来源、补facts
 - 启动：新开一个Trae会话，第一条消息发：
   ```
-  读 [/workspace](https://github.com/riyuexingchen1234/jubilant-meme/tree/main的)/prompts/researcher.md，你现在是调研会话，负责事实调研和来源验证。
+  读 https://github.com/riyuexingchen1234/jubilant-meme/tree/main的/prompts/researcher.md，你现在是调研会话，负责事实调研和来源验证。
   ```
 - 长期开着，不要关。**绝对不要在这个会话里写小说内容。**
 
@@ -47,7 +47,7 @@
 - 什么时候用：你想模仿某本小说/某个作者的风格开新书
 - 启动：新开一个Trae会话，第一条消息发：
   ```
-  读 [/workspace](https://github.com/riyuexingchen1234/jubilant-meme/tree/main的)/prompts/distiller.md，现在做作者风格蒸馏。作者名：<作者slug>，样本文件路径：<txt/epub路径>
+  读 https://github.com/riyuexingchen1234/jubilant-meme/tree/main的/prompts/distiller.md，现在做作者风格蒸馏。作者名：<作者slug>，样本文件路径：<txt/epub路径>
   ```
 - 做完之后，这个会话可以关掉，蒸馏好的风格规则会保存在`authors/<author_slug>/`目录里。
 
@@ -116,7 +116,7 @@ facts齐全→主控告诉你发给写稿会话写
 ---
 
 ## 文件在哪里
-所有东西都在`[/workspace](https://github.com/riyuexingchen1234/jubilant-meme/tree/main的)/`下：
+所有东西都在`https://github.com/riyuexingchen1234/jubilant-meme/tree/main`下：
 - 系统规则：`/workspace/SYSTEM.md`
 - 各会话Prompt：`/workspace/prompts/`
 - 检查脚本：`/workspace/tools/`
