@@ -151,11 +151,7 @@ work/<novel_slug>/
 └── reviews/
 ```
 
-**不新增多余目录和中间文件**：
-- ❌ 不建events/目录，事件调研直接更新event_pool
-- ❌ 不建chapter_plans/目录，章节思考在写稿输出里完成
-- ❌ 阶段规划不存单独plan文件，确认后写入current_stage.md
-- ✅ 阶段结束存一个简单的stage_N_summary.md归档
+**不新增多余目录和中间文件**：能复用现有文件就复用，不要为了"看起来清晰"随便建新文件堆中间产物。
 
 core_bones.md格式：
 ```
