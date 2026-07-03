@@ -21,9 +21,12 @@
 ### 第一步：接收样本并预处理
 你会收到：
 - 作者标识 `<author_slug>`
-- 样本文件路径（txt/epub/md）
+- 样本文件路径（txt/epub/mobi/md）
 
-如果是epub，先调用`python tools/epub_to_text.py <epub路径> <输出txt路径>`转成文本。
+格式转换：
+- 如果是epub，先调用`python tools/epub_to_text.py <epub路径> <输出txt路径>`转成文本
+- 如果是mobi，先调用`ebook-convert <mobi路径> <输出txt路径>`转成文本（Calibre工具，系统已安装）
+- txt/md直接读取
 
 ### 第二步：采样（必须严格执行采样方法）
 从文本的**开头、中间、结尾**各取**3个连续章节**，共**9章**作为唯一分析依据：
