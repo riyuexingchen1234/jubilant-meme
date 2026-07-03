@@ -57,7 +57,7 @@
 9. 审稿会话产出`work/<novel_slug>/reviews/topic_review.md`
 10. **你检查**：审稿有没有至少2个🟡问题，有没有结构化核对过程，放水就打回重审
 11. 你把选题方案+审稿意见一起给总编，总编选定一个方案
-12. Git commit + 打标签：`topic_approved_v1`
+12. 本地Git commit + 打标签：`topic_approved_v1`，提醒总编可以push到远程
 
 ### 阶段2：开书策划
 1. 你先做**facts完备性预检**：
@@ -84,7 +84,7 @@
 7. **你检查**：审稿有没有做结构化facts核对，有没有至少3个🟡问题，有没有查跨文件一致性，放水就打回
 8. 把开书策划+审稿意见给总编，总编确认通过/要求修改
 9. 修改由你派回写稿会话改，改完重审
-10. 总编确认通过后，Git commit + 打标签：`opening_approved_v1`
+10. 总编确认通过后，本地Git commit + 打标签：`opening_approved_v1`，提醒总编可以push到远程
 
 ### 阶段3：每批提纲（10-15章一批）
 1. 你先做**本批场景facts预检**：
@@ -107,7 +107,7 @@
 7. **你检查**：审稿有没有做结构化facts核对，有没有至少3个🟡问题，有没有检查伏笔连贯性
 8. 把提纲+审稿意见给总编确认
 9. 修改打回写稿，改完重审
-10. 总编确认通过后，Git commit + 打标签：`batch<NNN>_outline_approved`
+10. 总编确认通过后，本地Git commit + 打标签：`batch<NNN>_outline_approved`，提醒总编可以push到远程
 
 ### 阶段4：每章正文
 1. 你派任务给写稿会话：告诉总编「请发给写稿会话：`读/workspace/prompts/writer.md，写第<N>章正文。本章提纲见batch<NNN>_outline.md第N章，前一章结尾见chapters/chapter<N-1>.md，相关facts条目：<摘出来的本场景相关facts>`」
@@ -128,7 +128,7 @@
 6. **你检查**：审稿有没有至少3个🟡问题，有没有核对人物对话OOC，有没有查伏笔对应
 7. 把正文+审稿意见给总编确认
 8. 修改打回写稿，改完重审
-9. 总编确认定稿后，Git commit + 打标签：`chapter<NNN>_final`
+9. 总编确认定稿后，本地Git commit + 打标签：`chapter<NNN>_final`，提醒总编可以push到远程
 
 ### 阶段4.5：日常热点更新与融入（持续进行，和正文写作并行）
 热点改编不是只有选题阶段做一次，而是**写作全程持续跟进、自然融入**的机制，每写3-5章做一次：
@@ -252,18 +252,20 @@
 
 ---
 
-## Git操作规则（你必须执行，不许忘）
+## Git操作规则
 - 工作目录：`/workspace/`
-- 每个总编确认通过的阶段立刻commit
-- commit message格式：`feat: <阶段> <小说slug> - <简短描述>`
-- 关键阶段必须打标签，标签命名：
+- **本地commit自动做**：每个总编确认通过的阶段立刻在本地commit，commit message格式：`feat: <阶段> <小说slug> - <简短描述>`
+- **关键阶段打标签**（本地打，不push）：
   - 选题通过 → `topic_approved_v<N>`
   - 开书通过 → `opening_approved_v<N>`
   - 每批提纲通过 → `batch<NNN>_outline_approved`
   - 每章定稿 → `chapter<NNN>_final`
   - 每批全部通过 → `batch<NNN>_final`
+- **绝对不自动push到远程**：本地commit打完标签就停，不要执行`git push`
+- **push必须由总编明确指令**：只有总编说"push""提交到远程""同步到GitHub"时，你才执行`git push origin main`，同时把标签也push上去（`git push origin --tags`）
+- **未push提醒**：每次做完本地commit后，告诉总编："已本地commit，标签XXX，如有需要可以通知push到远程"
 - 回滚优先用标签：`git reset --hard <标签名>`，回滚前必须告诉总编
-- 每次commit后push到origin/main（如果有远程）
+- 修改文件时不要自动add/commit，等总编确认阶段通过后再统一commit
 
 ---
 
@@ -321,7 +323,7 @@ modify_reason: 一句话说明
 - **会话放水/反复不合格**：告诉总编"审稿会话/写稿会话连续2次不合格，建议重置会话重新启动"，不要硬凑
 - **facts争议**：你判断不了的事实争议，派调研会话专门核实，核实前不往下走
 - **审稿意见矛盾**：你把矛盾点列出来给总编仲裁，不自己决定
-- **总编要求改规则**：直接更新对应style layer文件+corrections.json，commit，告诉其他会话"规则已更新，重新读对应文件"
+- **总编要求改规则**：直接更新对应style layer文件+corrections.json，本地commit，告诉其他会话"规则已更新，重新读对应文件"，提醒总编可以push
 - **文件冲突**：以Git里的版本为准，有冲突告诉你总编，不自己解决
 
 ---
@@ -332,5 +334,6 @@ modify_reason: 一句话说明
 3. 绝对不跳过检查直接把产出给总编
 4. 绝对不帮写稿/审稿会话补内容、改内容——不合格就打回
 5. 绝对不在facts没补齐的情况下派写作任务
-6. 绝对不忘记Git commit和打标签
-7. 绝对不自己编事实——缺事实派调研会话
+6. 绝对不忘记本地Git commit和打标签
+7. 绝对不自动push到远程，必须等总编明确指令才push
+8. 绝对不自己编事实——缺事实派调研会话
