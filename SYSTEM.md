@@ -1,129 +1,105 @@
-# 长篇小说创作系统 v5.0
+# 小说创作多Agent系统 v5.3
 
-## 架构概述
-人在回路的多会话协作系统，由1个主控会话+3个长期工作会话+1个临时蒸馏会话组成，所有会话共享同一个Git仓库的`/workspace`目录。
+## 系统概述
+这是一个用于创作现实主义题材长篇网络小说的多Agent协同系统。核心原则：**真实性是生命线**。系统通过会话物理隔离、证据链机制、事实数据表（facts.md）、独立审稿，系统性防止LLM编造事实、假装调研、角色放水。
 
-### 会话分工
-| 会话 | 类型 | 职责 | System Prompt |
-|------|------|------|---------------|
-| 主控会话 | 长期 | 和总编交互、流程调度、质量检查、文件管理、Git提交 | `prompts/master.md` |
-| 写稿会话 | 长期 | 选题、开书策划、写提纲、写正文、更新状态 | `prompts/writer.md` |
-| 审稿会话 | 长期 | 独立第三方审稿、挑错、核对facts一致性 | `prompts/reviewer.md` |
-| 调研会话 | 长期 | 热点调研、事实补全、来源验证 | `prompts/researcher.md` |
-| 蒸馏会话 | 临时 | 开书前从作者样本蒸馏风格规则，做完即关 | `prompts/distiller.md` |
+## 架构：4+1 会话
 
-### 核心设计原则
-1. **物理隔离防放水**：创作、审稿、调研完全独立会话，审稿永远看不到创作过程，只看文件
-2. **写前必查facts**：写稿会话动笔前必须做场景事实检查，缺事实停下要调研，不许编
-3. **结构化核对防走过场**：审稿必须输出结构化facts核对结果，必须挑至少3个问题
-4. **落盘才算数**：所有决策、事实、设定必须写入文件，对话里说的不算
-5. **主控只调度不创作**：主控不写小说、不审稿，只派活、检查、传递
-6. **所有硬事实有来源**：facts.md里的每条事实必须附来源，主控抽样验证
+| 会话 | 职责 | 是否长期驻留 |
+|------|------|-------------|
+| 主控会话（总编助理） | 流程调度、派活、质量检查、文件管理、和总编交互 | ✅ 长期 |
+| 写稿会话 | 选题、开书策划、写提纲、写正文、更新状态文件 | ✅ 长期 |
+| 审稿会话 | 独立五维度审稿（事实/真实/逻辑/节奏/文笔），物理隔离 | ✅ 长期 |
+| 调研会话 | 热点调研、事实补全、来源WebFetch验证 | ✅ 长期 |
+| 蒸馏会话 | 从作者已有作品蒸馏风格规则（layer0-5） | ❌ 开书前用一次，用完关 |
 
----
+**核心设计**：所有会话共享同一个本地`/workspace`目录，通过读写文件协作，通过总编在会话间传递消息。写稿和审稿完全物理隔离——审稿会话永远看不到写稿会话的思考过程，只看到最终文件。
 
-## 现实主义题材核心原则（所有会话必须遵守）
-1. **真实性是生命线**：硬数字、硬流程、硬逻辑必须符合真实世界，不许为了戏剧冲突牺牲真实性
-2. **证据链防造假**：所有新增硬事实必须有来源，附事实来源表，主控抽样验证
-3. **人物行为符合身份**：老江湖有老江湖的反应，菜鸟有菜鸟的反应，不能为了剧情让人物做不符合身份的事
-4. **facts.md是唯一真相来源**：所有硬事实以bible/facts.md为准，其他文件和facts矛盾必须打回
+## 核心机制
 
----
+### 1. 证据链机制（防LLM假装调研）
+- **事实来源表**：选题、开书、每批提纲末尾必须附结构化事实来源表（序号|事实内容|来源类型|来源路径/URL|来源摘要）
+- **主控抽样验证**：主控收到任何产出，随机抽1-2条来源WebFetch验证，发现编造直接打回
+- **填空式自检**：不允许打勾式自检，必须填具体内容
+
+### 2. bible/facts.md事实数据表
+facts.md是所有硬事实的唯一真相来源，只记两类事实：
+1. **内行一看就假的**（经济数据、行业流程、地理距离、通讯方式、出入境规则）
+2. **前后容易矛盾的**（人物手里多少钱、别人欠他多少、人物关系状态）
+不记录常识，不记录不确定的推断。格式自由组织，但必须覆盖6大类必填类目（物理行动/资金/生意/风险/关系/时间空间）。
+
+### 3. progress.md进度追踪
+每个小说项目根目录必须有`progress.md`，记录：当前阶段、已完成步骤、待完成步骤、当前批次/章节号。主控每次操作前后必须读写，防止会话重启后丢失进度。
+
+### 4. 写前场景事实检查
+写稿会话动笔前必须先列出本任务涉及的所有场景动作（怎么买票、怎么付钱、怎么打电话），逐项对照facts.md，缺的列"需要补调研清单"停下，facts齐全才开始写。这是防止"护照/电话卡/现金"类低级硬伤的核心防线。
+
+### 5. 审稿过程质量要求
+审稿不再强制要求"至少找出N个问题"（容易凑数），而是要求**必须展示核对过程**：每个维度核对了什么、怎么核对的。没有核对过程直接说"没问题"，视为审稿不通过。
+
+### 6. 上下文按需加载
+写稿会话不得全量加载所有历史章节和人物卡：前一章只读最后1500字衔接，旧内容从状态文件查。这是防止长篇写作上下文爆炸的关键。
 
 ## 目录结构
 ```
-/workspace/
-├── SYSTEM.md                   # 本文件，系统总览
-├── README.md                   # 用户使用手册（启动说明、工作流示例）
-├── prompts/                    # 各会话System Prompt
+workspace/
+├── SYSTEM.md                    # 本文件
+├── README.md                    # 使用说明
+├── prompts/                     # 各会话System Prompt
 │   ├── master.md
 │   ├── writer.md
 │   ├── reviewer.md
 │   ├── researcher.md
-│   ├── distiller.md
-│   └── reference/              # 参考资料（题材市场地图等）
-├── tools/                      # 检查脚本（纯标准库，无依赖）
-│   ├── check_output.py         # 输出契约检查
-│   ├── check_facts_consistency.py # facts一致性扫描
-│   ├── check_ai_cliches.py     # AI套话检测
-│   ├── text_stats.py           # 文本统计
-│   └── epub_to_text.py         # epub转文本（蒸馏用）
-├── authors/                    # 已蒸馏作者风格库
+│   └── distiller.md
+├── tools/                       # 检查脚本
+│   ├── check_output.py          # 检查输出格式完整性
+│   ├── check_facts_consistency.py # 跨文件数字一致性检查
+│   ├── check_ai_cliches.py      # AI套话检测（支持--layer5读反模式库）
+│   ├── text_stats.py            # 文本统计（字数/对话占比/段落数）
+│   └── epub_to_text.py          # epub转文本（蒸馏用）
+├── authors/                     # 作者风格库
 │   └── <author_slug>/
-│       ├── layer0_redlines.md
-│       ├── layer1_meta.md
+│       ├── layer0_theme_hard_redlines.md
+│       ├── layer1_rhythm_structure.md
 │       ├── layer2_prose_dna.md
-│       ├── layer3_characters.md
-│       ├── layer4_structure.md
+│       ├── layer3_character_speech.md
+│       ├── layer4_foreshadow_craft.md
 │       ├── layer5_antipatterns.md
 │       ├── corrections.json
 │       └── distillation_report.md
-└── work/                       # 小说工作区
-    ├── _research/              # 公共调研素材
-    └── <novel_slug>/           # 每本小说一个目录
-        ├── bible/              # 小说圣经（核心设定）
-        │   ├── facts.md        # 事实数据表（最重要的文件）
-        │   ├── world.md
-        │   ├── characters/
-        │   ├── style/          # 从authors复制过来的风格规则
-        │   ├── character_state.md
-        │   ├── foreshadow_map.md
-        │   ├── timeline.md
-        │   ├── plot_arcs.md
-        │   └── corrections.json
-        ├── batch_plans/        # 分批提纲
-        ├── chapters/           # 正文
-        └── reviews/            # 审稿意见
+├── work/                        # 小说工作区
+│   ├── _research/               # 公共调研素材
+│   └── <novel_slug>/            # 每本小说独立目录
+│       ├── progress.md
+│       ├── bible/
+│       │   ├── facts.md
+│       │   ├── world.md
+│       │   ├── characters/
+│       │   ├── style/           # 从authors复制
+│       │   ├── character_state.md
+│       │   ├── foreshadow_map.md
+│       │   ├── timeline.md
+│       │   ├── plot_arcs.md
+│       │   └── corrections.json
+│       ├── batch_plans/
+│       ├── chapters/
+│       └── reviews/
+└── docs/                        # 文档（design.md为历史文档）
 ```
 
----
-
-## 事实数据表（bible/facts.md）规范
-所有现实主义题材小说必须建facts.md，包含三张固定表格，必须覆盖6大类硬事实：
-
-三张固定表格：
-1. **经济事实表**：人物收入、支出、负债、资产、现金流
-2. **流程事实表**：关键场景的真实流程、第一反应、常见坑
-3. **社交边界表**：人物日常接触谁、能接触谁、绝对接触不到谁
-
-6大类必填类目（缺一类必须补调研，不许进入创作）：
-- [ ] 人物物理行动类（出入境/交通/住宿/通讯/饮食）
-- [ ] 资金操作类（钱怎么带/存/取/付/汇率/限额）
-- [ ] 核心生意类（行业流程/行规/黑话/风险）
-- [ ] 风险应对类（出事找谁/不能找谁/代价）
-- [ ] 关系网络类（不同问题找什么人/信任边界）
-- [ ] 时间空间类（距离/交通时间/地点作息）
-
----
-
 ## 工具脚本说明
-所有脚本纯Python标准库，不需要安装依赖：
 
 | 脚本 | 用法 | 什么时候跑 |
 |------|------|-----------|
-| check_output.py | `python tools/check_output.py <文件> --type <topic/opening/outline/general>` | 主控拿到任何产出后第一时间跑，FAIL直接打回 |
-| check_facts_consistency.py | `python tools/check_facts_consistency.py <小说目录>` | 开书后、每批提纲后、每章后跑，扫跨文件数字矛盾 |
-| check_ai_cliches.py | `python tools/check_ai_cliches.py <文件>` | 正文审稿前跑，查AI套话 |
-| text_stats.py | `python tools/text_stats.py <文件> [--json]` | 正文写完后跑，查字数句长是否符合layer1 |
-| epub_to_text.py | `python tools/epub_to_text.py <epub> <输出txt>` | 蒸馏作者风格时转格式用 |
+| check_output.py | `python tools/check_output.py <文件> --type <topic/opening/outline/chapter>` | 任何创作产出后 |
+| check_facts_consistency.py | `python tools/check_facts_consistency.py work/<slug>` | 开书后、每批提纲后、正文后 |
+| check_ai_cliches.py | `python tools/check_ai_cliches.py <文件> --layer5 work/<slug>/bible/style/layer5_antipatterns.md` | 正文后 |
+| text_stats.py | `python tools/text_stats.py <文件>` | 正文后 |
+| epub_to_text.py | `python tools/epub_to_text.py <epub> <输出txt>` | 蒸馏时 |
 
----
-
-## Git约定
-- 每个总编确认通过的阶段必须commit
-- 关键阶段必须打标签：
-  - `topic_approved_vN` 选题通过
-  - `opening_approved_vN` 开书通过
-  - `batchNNN_outline_approved` 每批提纲通过
-  - `chapterNNN_final` 每章定稿
-  - `batchNNN_final` 每批全部通过
-- 回滚优先用标签：`git reset --hard <标签名>`
-- 回滚前必须告知总编
-
----
+## Git规则
+主控不主动执行任何Git操作（包括commit）。只有总编明确指示时才commit/push/打标签。
 
 ## 版本记录
-- **v5.0 (2026-07-02)**：全新架构，4+1多会话物理隔离，写前场景事实检查，结构化审稿核对
-- v4.7：执行层硬化，审稿隔离，输出契约，Git标签
-- v4.6：证据链机制，facts.md，事实来源表，抽样验证
-- v4.5-v1.0：历史版本，已废弃，见docs/design.md（参考用）
+- v5.3: 合并优化——精简prompt、增加progress.md、上下文按需加载、写前场景检查、审稿过程质量代替凑数、facts不设固定表格、Git完全手动、check_ai_cliches支持--layer5
+- v5.0-v5.2: 4+1多会话架构、证据链机制、facts.md体系、热点融入规则
