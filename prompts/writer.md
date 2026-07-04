@@ -24,7 +24,7 @@
 
 ## 上下文加载（按需加载，不全读）
 - **每次必读**：bible/facts.md、bible/core_bones.md、bible/corrections.json、bible/event_pool.md、bible/story_threads.md、bible/world_state.md、bible/current_stage.md
-- **风格**：写正文读layer0+layer2；阶段/章节思考读layer0+layer1+layer4；开书全读
+- **风格**：写正文必读`bible/style/layer0_redlines.md` + `bible/style/layer2_prose_dna.md` + `bible/style/layer5_antipatterns.md`；阶段/章节思考加读`bible/style/layer1_meta.md` + `bible/style/layer4_structure.md`；开书全读6个layer
 - **人物**：只读本章出场的人物卡
 - **前情**：只读前一章最后1500字衔接，更早的从character_state/world_state/story_threads/foreshadow_map/timeline查，不读全文
 - **不**全量加载历史章节撑爆上下文
@@ -65,7 +65,18 @@ facts齐了之后，先在输出开头简单列本章思路：
 
 ## 输出要求
 开头列读了哪些文件。末尾附事实来源表（有新事实时）。中间是正文。
-**写完自我审视**：说三个你最不满意的地方和改法，以及"本章是否偏离当前阶段核心目标"。觉得没什么改的说明你没认真看。
+
+**写完必须做文笔自检**：对照 `bible/style/layer0_redlines.md`、`bible/style/layer2_prose_dna.md`、`bible/style/layer5_antipatterns.md`，逐段扫一遍，找出所有违反风格规则的地方，直接改掉。自检必须在输出末尾附固定格式的表，没有自检表等于没完成：
+```
+## 文笔自检
+| 检查规则 | 找到几处 | 改了哪些位置 |
+|---------|---------|-------------|
+| layer0 红线 | X处 | 第X段改了XXX |
+| layer2 文笔 | X处 | 第X段改了XXX |
+| layer5 反模式 | X处 | 第X段改了XXX |
+```
+
+**写完必须做自我审视**：说三个你最不满意的地方和改法，以及"本章是否偏离当前阶段核心目标"。觉得没什么改的说明你没认真看。
 
 ## 各任务要求
 
@@ -102,7 +113,7 @@ facts齐了之后，先在输出开头简单列本章思路：
    - 他怎么判断→他选择做什么（主动选择）→行动→结果
    - 结果带来外在小变化→也带来内在小变化
    - 小细节、行业日常、背景音自然加在对话、场景、人物动作里，不硬塞
-4. 遵守layer0红线和layer2文笔，对话符合人物身份和当前关系，符合world_state里的内在状态
+4. 写完必须做文笔自检：对照layer0+layer2+layer5逐段检查，找到问题直接改，最后附自检表（格式见"输出要求"）。没有自检表等于没写完。
 5. 章末必须有钩子
 6. **写完必须同步更新**：
    - character_state.md
@@ -131,7 +142,6 @@ facts齐了之后，先在输出开头简单列本章思路：
 - 人物行为符合身份：老江湖先评估风险、商人先算账、菜鸟容易慌
 - 人物反应符合当前内在状态：底线在哪里就会做什么选择
 - 对话不干净：有废话、打岔、说一半、方言尾音、聊无关的事
-- 不AI味：禁用词见layer5；不许工整三段式心理活动；不许每场景写全感官；不许刻意渲染结尾单句成段；不许重复抽烟/看手机/打电话撑篇幅
 - NPC不配合：该刁难刁难、该要钱要钱、该不说不说、该反水反水
 - 硬事实要过人物脑子才能上正文：facts里的条目不能直接搬，要用人物的记忆碎片、具体的痛、一句骂、一次吃亏来呈现
 - 行业细节要像内行：闲聊里聊的行话、算账的方式、对风险的本能反应，要像真干这行的人
